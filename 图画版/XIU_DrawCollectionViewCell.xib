@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="XIU_DrawCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="318" height="439"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="318" height="439"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldZ-l8-TYr">
+                        <rect key="frame" x="0.0" y="0.0" width="318" height="351"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timg.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="uii-5T-mGG">
+                                <rect key="frame" x="0.0" y="0.0" width="318" height="350.5"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uii-5T-mGG" secondAttribute="trailing" id="keI-nb-OgS"/>
+                            <constraint firstItem="uii-5T-mGG" firstAttribute="top" secondItem="ldZ-l8-TYr" secondAttribute="top" id="qBT-lg-aQK"/>
+                            <constraint firstAttribute="bottom" secondItem="uii-5T-mGG" secondAttribute="bottom" constant="0.5" id="qG2-CA-sOB"/>
+                            <constraint firstItem="uii-5T-mGG" firstAttribute="leading" secondItem="ldZ-l8-TYr" secondAttribute="leading" id="xT4-Cc-RUf"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJW-fh-vOS">
+                        <rect key="frame" x="0.0" y="351" width="318" height="88"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ht-0C-3pV">
+                                <rect key="frame" x="0.0" y="0.0" width="159" height="88"/>
+                                <state key="normal" title="ADD"/>
+                                <connections>
+                                    <action selector="clickAddBtn:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Dlz-Ai-83C"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bi4-Jv-XCk">
+                                <rect key="frame" x="159" y="0.0" width="159" height="88"/>
+                                <state key="normal" image="unlike.png"/>
+                                <connections>
+                                    <action selector="clickLikeBtn:" destination="gTV-IL-0wX" eventType="touchUpInside" id="7Kw-sR-9VS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bi4-Jv-XCk" firstAttribute="width" secondItem="2ht-0C-3pV" secondAttribute="width" id="7MC-sJ-Cbu"/>
+                            <constraint firstAttribute="bottom" secondItem="bi4-Jv-XCk" secondAttribute="bottom" id="MpG-yJ-syq"/>
+                            <constraint firstItem="2ht-0C-3pV" firstAttribute="leading" secondItem="TJW-fh-vOS" secondAttribute="leading" id="Rsa-Mf-4Im"/>
+                            <constraint firstItem="bi4-Jv-XCk" firstAttribute="leading" secondItem="2ht-0C-3pV" secondAttribute="trailing" id="dqp-Z5-ARG"/>
+                            <constraint firstAttribute="bottom" secondItem="2ht-0C-3pV" secondAttribute="bottom" id="nsp-c1-SVK"/>
+                            <constraint firstAttribute="trailing" secondItem="bi4-Jv-XCk" secondAttribute="trailing" id="oww-Gb-fPR"/>
+                            <constraint firstItem="bi4-Jv-XCk" firstAttribute="top" secondItem="TJW-fh-vOS" secondAttribute="top" id="vrL-fJ-ixJ"/>
+                            <constraint firstItem="2ht-0C-3pV" firstAttribute="top" secondItem="TJW-fh-vOS" secondAttribute="top" id="wTf-ni-13S"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ldZ-l8-TYr" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Sei-1m-mWI"/>
+                <constraint firstItem="ldZ-l8-TYr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UuH-Do-3Bs"/>
+                <constraint firstAttribute="trailing" secondItem="TJW-fh-vOS" secondAttribute="trailing" id="abb-XC-LdW"/>
+                <constraint firstItem="ldZ-l8-TYr" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.8" id="cXA-8d-U6T"/>
+                <constraint firstItem="TJW-fh-vOS" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.2" id="pX9-LV-roH"/>
+                <constraint firstItem="TJW-fh-vOS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wzc-bV-JZ7"/>
+                <constraint firstAttribute="trailing" secondItem="ldZ-l8-TYr" secondAttribute="trailing" id="xqP-hs-viN"/>
+                <constraint firstAttribute="bottom" secondItem="TJW-fh-vOS" secondAttribute="bottom" id="yxi-3Q-Zz4"/>
+            </constraints>
+            <size key="customSize" width="318" height="439"/>
+            <connections>
+                <outlet property="addBtn" destination="2ht-0C-3pV" id="6nf-49-sZO"/>
+                <outlet property="bottomBgView" destination="TJW-fh-vOS" id="1EZ-w4-sf3"/>
+                <outlet property="likeBtn" destination="bi4-Jv-XCk" id="h09-j3-ysd"/>
+                <outlet property="topBgView" destination="ldZ-l8-TYr" id="UxS-Jm-jn0"/>
+                <outlet property="topImageView" destination="uii-5T-mGG" id="2dQ-59-SN8"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="75"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="timg.jpeg" width="650" height="487"/>
+        <image name="unlike.png" width="36" height="32"/>
+    </resources>
+</document>
