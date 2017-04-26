@@ -24,6 +24,11 @@
 		FA43B3BF1EA1EF4E0056784D /* unlike.png in Resources */ = {isa = PBXBuildFile; fileRef = FA43B3BD1EA1EF4E0056784D /* unlike.png */; };
 		FA43B3C61EA1F0080056784D /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = FA43B3C41EA1F0080056784D /* like.png */; };
 		FA43B3C71EA1F0080056784D /* unlike.png in Resources */ = {isa = PBXBuildFile; fileRef = FA43B3C51EA1F0080056784D /* unlike.png */; };
+		FA6691001EB0912600CBCC6D /* XIU_EditorPerspecitiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6690FF1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.m */; };
+		FA6691021EB0913100CBCC6D /* XIU_EditorPerspecitiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6691011EB0913100CBCC6D /* XIU_EditorPerspecitiveView.xib */; };
+		FA6691051EB092C300CBCC6D /* 叉.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6691031EB092C300CBCC6D /* 叉.png */; };
+		FA6691061EB092C300CBCC6D /* 对号.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6691041EB092C300CBCC6D /* 对号.png */; };
+		FA6691081EB093DB00CBCC6D /* 透视.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6691071EB093DB00CBCC6D /* 透视.png */; };
 		FA86379E1EA4EA4B001A10E9 /* XIU_DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA86379D1EA4EA4B001A10E9 /* XIU_DrawViewController.m */; };
 		FA8637A61EA4F103001A10E9 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8637A11EA4F103001A10E9 /* RECommonFunctions.m */; };
 		FA8637A71EA4F104001A10E9 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8637A31EA4F103001A10E9 /* RESideMenu.m */; };
@@ -99,6 +104,12 @@
 		FA43B3BD1EA1EF4E0056784D /* unlike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlike.png; sourceTree = "<group>"; };
 		FA43B3C41EA1F0080056784D /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
 		FA43B3C51EA1F0080056784D /* unlike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlike.png; sourceTree = "<group>"; };
+		FA6690FE1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XIU_EditorPerspecitiveView.h; sourceTree = "<group>"; };
+		FA6690FF1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XIU_EditorPerspecitiveView.m; sourceTree = "<group>"; };
+		FA6691011EB0913100CBCC6D /* XIU_EditorPerspecitiveView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XIU_EditorPerspecitiveView.xib; sourceTree = "<group>"; };
+		FA6691031EB092C300CBCC6D /* 叉.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "叉.png"; sourceTree = "<group>"; };
+		FA6691041EB092C300CBCC6D /* 对号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "对号.png"; sourceTree = "<group>"; };
+		FA6691071EB093DB00CBCC6D /* 透视.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "透视.png"; sourceTree = "<group>"; };
 		FA86379C1EA4EA4A001A10E9 /* XIU_DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XIU_DrawViewController.h; sourceTree = "<group>"; };
 		FA86379D1EA4EA4B001A10E9 /* XIU_DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XIU_DrawViewController.m; sourceTree = "<group>"; };
 		FA8637A01EA4F103001A10E9 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -238,6 +249,9 @@
 				FA9665C91E9E65E3008C6D87 /* char.png */,
 				FA9665C61E9E63ED008C6D87 /* timg.jpeg */,
 				FA9665C21E9E61F4008C6D87 /* png-0838.png */,
+				FA6691071EB093DB00CBCC6D /* 透视.png */,
+				FA6691031EB092C300CBCC6D /* 叉.png */,
+				FA6691041EB092C300CBCC6D /* 对号.png */,
 				FA43B3C41EA1F0080056784D /* like.png */,
 				FA43B3C51EA1F0080056784D /* unlike.png */,
 				FA9665C31E9E61F4008C6D87 /* music.png */,
@@ -257,6 +271,9 @@
 				FA86379D1EA4EA4B001A10E9 /* XIU_DrawViewController.m */,
 				FAE1BCF61E99F58A007404A2 /* XIU_EditorToolView.h */,
 				FAE1BCF71E99F58A007404A2 /* XIU_EditorToolView.m */,
+				FA6690FE1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.h */,
+				FA6690FF1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.m */,
+				FA6691011EB0913100CBCC6D /* XIU_EditorPerspecitiveView.xib */,
 				FA9665BF1E9E6036008C6D87 /* XIU_DrawView.h */,
 				FA9665C01E9E6036008C6D87 /* XIU_DrawView.m */,
 				FAE1BCCC1E99F35E007404A2 /* Main.storyboard */,
@@ -402,11 +419,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9665C41E9E61F4008C6D87 /* png-0838.png in Resources */,
+				FA6691051EB092C300CBCC6D /* 叉.png in Resources */,
 				FA9665CB1E9E65E3008C6D87 /* char.png in Resources */,
 				FA9665C71E9E63ED008C6D87 /* timg.jpeg in Resources */,
 				FA43B3C71EA1F0080056784D /* unlike.png in Resources */,
 				FAE1BCD31E99F35E007404A2 /* LaunchScreen.storyboard in Resources */,
+				FA6691081EB093DB00CBCC6D /* 透视.png in Resources */,
+				FA6691061EB092C300CBCC6D /* 对号.png in Resources */,
 				FAE1BCD01E99F35E007404A2 /* Assets.xcassets in Resources */,
+				FA6691021EB0913100CBCC6D /* XIU_EditorPerspecitiveView.xib in Resources */,
 				FA9665BE1E9D085F008C6D87 /* photo.png in Resources */,
 				FAE1BCCE1E99F35E007404A2 /* Main.storyboard in Resources */,
 				FA9665CA1E9E65E3008C6D87 /* longchar.png in Resources */,
@@ -449,6 +470,7 @@
 				FAE1BCCB1E99F35E007404A2 /* ViewController.m in Sources */,
 				FAE1BCC81E99F35E007404A2 /* AppDelegate.m in Sources */,
 				FA43B3AF1EA1DBBA0056784D /* MASConstraintMaker.m in Sources */,
+				FA6691001EB0912600CBCC6D /* XIU_EditorPerspecitiveView.m in Sources */,
 				FA43B3AE1EA1DBBA0056784D /* MASConstraint.m in Sources */,
 				FA8637A61EA4F103001A10E9 /* RECommonFunctions.m in Sources */,
 				FA43B3B41EA1DBBB0056784D /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
