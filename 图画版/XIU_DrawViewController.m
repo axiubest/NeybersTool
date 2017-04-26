@@ -30,6 +30,7 @@
 
 - (void)didClickedButton {
     ViewController *v = [[ViewController alloc] init];
+    v.hidesBottomBarWhenPushed = 1;
     [self.navigationController pushViewController:v animated:YES];
 }
 - (void)didReceiveMemoryWarning {

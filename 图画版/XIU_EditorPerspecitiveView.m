@@ -1,0 +1,29 @@
+//
+//  XIU_EditorPerspecitiveView.m
+//  图画版
+//
+//  Created by A-XIU on 2017/4/26.
+//  Copyright © 2017年 XIU. All rights reserved.
+//
+
+#import "XIU_EditorPerspecitiveView.h"
+
+@interface XIU_EditorPerspecitiveView ()
+
+@property (weak, nonatomic) IBOutlet UISlider *horizontalTransformSlider;
+
+@property (weak, nonatomic) IBOutlet UISlider *verticalTransformSlider;
+
+@end
+
+@implementation XIU_EditorPerspecitiveView
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
+@end
