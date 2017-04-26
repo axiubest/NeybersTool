@@ -7,19 +7,28 @@
 //
 
 #import "XIU_EditorToolView.h"
-
+#import "XIU_EditorPerspecitiveView.h"
 
 @interface XIU_EditorToolView ()<UIScrollViewDelegate>
 
 
 @property (nonatomic, weak)UIScrollView *scrollView;
+
+@property (nonatomic, weak)XIU_EditorPerspecitiveView *perspecitive;
 @end
 
 
 @implementation XIU_EditorToolView
 
 
-
+-(XIU_EditorPerspecitiveView *)perspecitive {
+    if (!_perspecitive) {
+        XIU_EditorPerspecitiveView *perspecitive = [[[NSBundle mainBundle] loadNibNamed:@"XIU_EditorPerspecitiveView" owner:nil options:nil] firstObject];
+        perspecitive.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, 180);
+        _perspecitive = perspecitive;
+    }
+    return _perspecitive;
+}
 
 
 -(instancetype)initWithFrame:(CGRect)frame {
@@ -41,10 +50,16 @@
 
         
         [self addSubview:self.scrollView];
+            
+            [self createToolBarView];
         }
     }
     return self;
 
+}
+
+- (void)createToolBarView {
+       [self addSubview:self.perspecitive];
 }
 
 - (void)clcikBotton:(UIView *)view {
@@ -68,9 +83,17 @@
             case EditorToolStyle_Info:
                 
                 break;
-            case EditorToolStyle_Perspecitive:
-                
-                break;
+                case EditorToolStyle_Perspecitive:{
+                    [UIView animateWithDuration:1 animations:^{
+                        self.perspecitive.frame = CGRectMake(0, self.frame.size.height - 170, self.frame.size.width, 170);
+                    }];
+                    
+                    if ([self.delegate respondsToSelector:@selector(editorToolPerspecitive)]) {
+                        [self.delegate editorToolPerspecitive];
+                    }
+  
+                }
+                       break;
             case EditorToolStyle_Flip:
                 
                 break;
