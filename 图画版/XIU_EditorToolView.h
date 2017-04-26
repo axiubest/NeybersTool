@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XIU_EditorPerspecitiveView.h"
 
 typedef NS_ENUM (NSUInteger, EditorToolStyle) {
     EditorToolStyle_Clone,
@@ -36,11 +37,8 @@ typedef NS_ENUM (NSUInteger, EditorToolStyle) {
 
 @property (nonatomic, assign) EditorToolStyle style;
 
+@property (nonatomic, weak)XIU_EditorPerspecitiveView *perspecitive;
 @end
 
 
-@interface XIU_EditorBotton : UIView
 
--(instancetype)initWithFrame:(CGRect)frame ImageName:(NSString *)iamgeName Title:(NSString *)title;
-
-@end

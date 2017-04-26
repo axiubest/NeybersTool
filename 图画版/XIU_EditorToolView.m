@@ -7,18 +7,17 @@
 //
 
 #import "XIU_EditorToolView.h"
-#import "XIU_EditorPerspecitiveView.h"
 
 @interface XIU_EditorToolView ()<UIScrollViewDelegate>
 
 
 @property (nonatomic, weak)UIScrollView *scrollView;
 
-@property (nonatomic, weak)XIU_EditorPerspecitiveView *perspecitive;
+
 @end
 
-
 @implementation XIU_EditorToolView
+@synthesize style = _style;
 
 
 -(XIU_EditorPerspecitiveView *)perspecitive {
@@ -37,22 +36,24 @@
         self.backgroundColor = [UIColor whiteColor];
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         scrollView.backgroundColor = [UIColor clearColor];
+        _scrollView = scrollView;
         scrollView.delegate = self;
         scrollView.contentSize = CGSizeMake(20 * 40, 60);
         
         [self addSubview:scrollView];
-        for (int i = 0; i < 11; i++) {
-            XIU_EditorBotton *edit = [[XIU_EditorBotton alloc] initWithFrame:CGRectMake(i * 40, 0, 60, 60) ImageName:[NSString stringWithFormat:@"%d", i] Title:@"2"];
-            edit.tag = i;
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clcikBotton:)];
-            [edit addGestureRecognizer:tap];
-            [scrollView addSubview:edit];
 
-        
-        [self addSubview:self.scrollView];
-            
-            [self createToolBarView];
+        for (int i = 0; i < 11; i++) {
+            UIButton *edit = [[UIButton alloc] initWithFrame:CGRectMake(i * 40, 0, 60, 60)];
+            edit.backgroundColor = [UIColor grayColor];
+            [edit setTitle:@"1" forState:UIControlStateNormal];
+            edit.tag = i;
+            [edit addTarget:self action:@selector(clcikBotton:) forControlEvents:UIControlEventTouchUpInside];
+                [scrollView addSubview:edit];
+            [self.scrollView addSubview:edit];
         }
+
+        [self createToolBarView];
+
     }
     return self;
 
@@ -62,21 +63,19 @@
        [self addSubview:self.perspecitive];
 }
 
-- (void)clcikBotton:(UIView *)view {
-    switch (view.tag) {
+- (void)clcikBotton:(UIButton *)sender {
+    switch (sender.tag) {
         case EditorToolStyle_Clone:
-            if ([self.delegate respondsToSelector:@selector(editorToolClone)]) {
-                [self.delegate editorToolClone];
-            }
+//            if ([self.delegate respondsToSelector:@selector(editorToolClone)]) {
+//                [self.delegate editorToolClone];
+//            }
+            _style = EditorToolStyle_Clone;
             break;
         case EditorToolStyle_Delete:
-            if ([self.delegate respondsToSelector:@selector(editorToolDelete)]) {
-                [self.delegate editorToolDelete];
+     
                 break;
             case EditorToolStyle_Filter:
-                if ([self.delegate respondsToSelector:@selector(editorToolFilter)]) {
-                    [self.delegate editorToolFilter];
-                break;
+                        break;
             case EditorToolStyle_Lock:
                 
                 break;
@@ -84,14 +83,10 @@
                 
                 break;
                 case EditorToolStyle_Perspecitive:{
-                    [UIView animateWithDuration:1 animations:^{
+                    [UIView animateWithDuration:.5 animations:^{
                         self.perspecitive.frame = CGRectMake(0, self.frame.size.height - 170, self.frame.size.width, 170);
                     }];
                     
-                    if ([self.delegate respondsToSelector:@selector(editorToolPerspecitive)]) {
-                        [self.delegate editorToolPerspecitive];
-                    }
-  
                 }
                        break;
             case EditorToolStyle_Flip:
@@ -100,39 +95,8 @@
             default:
                 break;
             }
-    }
-
-
+    
+    NSDictionary *dic = @{@"type":[NSNumber numberWithInteger:sender.tag]};
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
 }
-}
-@end
-
-#pragma mark BottonView
-@implementation XIU_EditorBotton
-
--(instancetype)initWithFrame:(CGRect)frame ImageName:(NSString *)iamgeName Title:(NSString *)title {
-    self = [super initWithFrame:frame];
-    if (self) {
-        
-        UIView *bg = [[UIView alloc] initWithFrame:frame];
-        [self addSubview:bg];
-        bg.backgroundColor = [UIColor clearColor];
-        bg.layer.borderWidth = .5f;
-        bg.layer.borderColor = [UIColor grayColor].CGColor;
-        UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(17, 10, 24, 30)];
-        img.image = [UIImage imageNamed:iamgeName];
-        [bg addSubview:img];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, img.frame.size.height + 10, img.frame.size.width, frame.size.height * 0.2)];
-        label.textAlignment = 1;
-        label.textColor = [UIColor darkGrayColor];
-        label.text = title;
-        
-        [bg addSubview:label];
-
-    }
-    return self;
-    }
-
-
 @end

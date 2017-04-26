@@ -17,6 +17,7 @@
 @interface ViewController ()<XIU_EditorToolDelegate>
 
 @property (nonatomic, weak)XIU_DrawView *drawView;
+@property (nonatomic, weak)XIU_EditorToolView *editorToolView;
 @property (nonatomic, weak)UIView *bgView;
 @property (nonatomic, weak)UIButton *pushBtn;
 
@@ -63,6 +64,7 @@
     
     XIU_EditorToolView *view = [[XIU_EditorToolView alloc] initWithFrame:CGRectMake(0, Height - 60, Width, 60)];
     view.delegate = self;
+    _editorToolView = view;
     XIU_DrawView *draw = [[XIU_DrawView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 400)];
     draw.center = self.view.center;
     _drawView = draw;
@@ -118,8 +120,22 @@
 - (void)editorToolClone {
     
 }
+- (void)editorToolPerspecitive {
+    [self editorToolPerspecitiveViewHidden];
+}
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (_editorToolView.perspecitive.frame.origin.y < self.view.frame.size.height ) {
+        [self editorToolPerspecitiveViewHidden];
+        }
 
+}
+
+- (void)editorToolPerspecitiveViewHidden {
+    [UIView animateWithDuration:.5 animations:^{
+        _editorToolView.perspecitive.frame = CGRectMake(0, self.view.frame.size.height - 170, self.view.frame.size.width, 170);
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
