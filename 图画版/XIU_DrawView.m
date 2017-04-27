@@ -23,6 +23,9 @@
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(toolBarCommunication:) name:@"texttext" object:nil];
+        
         UIImageView *img = [[UIImageView alloc] initWithFrame:frame];
         img.userInteractionEnabled = YES;
         img.image = [UIImage imageNamed:@"timg.jpeg"];
@@ -54,13 +57,7 @@
         self.multipleTouchEnabled = YES;
         
         
-        
-        
-        
-        
-        
-        
-        
+
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self.imageView addGestureRecognizer:tapGesture];
@@ -76,6 +73,20 @@
     return self;
 }
 
+
+- (void)toolBarCommunication:(NSNotification *)noti {
+    NSLog(@"%@", noti);
+    
+    if ([noti.userInfo[@"type"] isEqual:@4]) {
+        CATransform3D trans = CATransform3DIdentity;
+        NSInteger num = [noti.userInfo[@"value"] integerValue];
+        trans.m34 = -(num/100);
+        trans = CATransform3DRotate(trans, M_PI/4, 0, 1, 0);
+        _imageView.layer.transform = trans;
+        _imageView2.layer.transform = trans;
+
+    }
+}
 
 -(void)tap:(UITapGestureRecognizer *)sender {
     

@@ -18,6 +18,19 @@
 
 @implementation XIU_EditorPerspecitiveView
 
+- (IBAction)horizontalSliderValueChange:(UISlider *)sender {
+    [_delegate perspecitiveValueChangeOfHorizontalWithValue:sender.value];
+}
+- (IBAction)verticalSliderValueChange:(UISlider *)sender {
+    [_delegate perspecitiveValueChangeOfVerticalWithValue:sender.value];
+}
+
+-(void)awakeFromNib {
+    [super awakeFromNib];
+    _horizontalTransformSlider.continuous = YES;
+    _verticalTransformSlider.continuous = YES;
+
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

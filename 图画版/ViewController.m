@@ -125,9 +125,9 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    if (_editorToolView.perspecitive.frame.origin.y < self.view.frame.size.height ) {
-        [self editorToolPerspecitiveViewHidden];
-        }
+//    if (_editorToolView.perspecitive.frame.origin.y < self.view.frame.size.height ) {
+//        [self editorToolPerspecitiveViewHidden];
+//        }
 
 }
 

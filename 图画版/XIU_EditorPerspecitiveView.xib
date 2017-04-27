@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,9 +34,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4qH-GS-5Rb">
                     <rect key="frame" x="0.0" y="80" width="512" height="80"/>
                     <subviews>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="透视.png" maximumValueImage="透视.png" translatesAutoresizingMaskIntoConstraints="NO" id="Smw-B1-9aI">
-                            <rect key="frame" x="18" y="25" width="476" height="31"/>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" minimumValueImage="透视.png" maximumValueImage="透视.png" translatesAutoresizingMaskIntoConstraints="NO" id="Smw-B1-9aI">
+                            <rect key="frame" x="18" y="30" width="476" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="DMu-F9-d0p"/>
+                            </constraints>
                             <color key="minimumTrackTintColor" red="0.6487000584602356" green="0.79131156206130981" blue="0.84180253744125366" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="horizontalSliderValueChange:" destination="iN0-l3-epB" eventType="valueChanged" id="5Rp-hS-0bg"/>
+                            </connections>
                         </slider>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,9 +55,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mxn-zL-DjT">
                     <rect key="frame" x="0.0" y="160" width="512" height="80"/>
                     <subviews>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="透视.png" maximumValueImage="透视.png" translatesAutoresizingMaskIntoConstraints="NO" id="t9c-bF-m68">
-                            <rect key="frame" x="18" y="25" width="476" height="31"/>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" minimumValueImage="透视.png" maximumValueImage="透视.png" translatesAutoresizingMaskIntoConstraints="NO" id="t9c-bF-m68">
+                            <rect key="frame" x="18" y="30" width="476" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="mvt-dc-QXj"/>
+                            </constraints>
                             <color key="minimumTrackTintColor" red="0.64870005850000001" green="0.79131156209999998" blue="0.84180253739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="verticalSliderValueChange:" destination="iN0-l3-epB" eventType="valueChanged" id="Rsy-57-qm8"/>
+                            </connections>
                         </slider>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

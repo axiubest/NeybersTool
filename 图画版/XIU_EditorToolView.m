@@ -7,8 +7,7 @@
 //
 
 #import "XIU_EditorToolView.h"
-
-@interface XIU_EditorToolView ()<UIScrollViewDelegate>
+@interface XIU_EditorToolView ()<UIScrollViewDelegate,XIU_EditorPerspecitiveDelgate>
 
 
 @property (nonatomic, weak)UIScrollView *scrollView;
@@ -23,12 +22,21 @@
 -(XIU_EditorPerspecitiveView *)perspecitive {
     if (!_perspecitive) {
         XIU_EditorPerspecitiveView *perspecitive = [[[NSBundle mainBundle] loadNibNamed:@"XIU_EditorPerspecitiveView" owner:nil options:nil] firstObject];
+        perspecitive.delegate = self;
         perspecitive.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, 180);
         _perspecitive = perspecitive;
     }
     return _perspecitive;
 }
 
+- (void)perspecitiveValueChangeOfHorizontalWithValue:(CGFloat)value {
+    NSDictionary *dic = @{@"type":[NSNumber numberWithInteger:EditorToolStyle_Perspecitive],@"value":[NSNumber numberWithFloat:value]};
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
+}
+- (void)perspecitiveValueChangeOfVerticalWithValue:(CGFloat)value {
+    NSDictionary *dic = @{@"type":[NSNumber numberWithInteger:EditorToolStyle_Perspecitive],@"value":[NSNumber numberWithFloat:value]};
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
+}
 
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -96,7 +104,8 @@
                 break;
             }
     
-    NSDictionary *dic = @{@"type":[NSNumber numberWithInteger:sender.tag]};
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
+    //tool drawView communication
+//    NSDictionary *dic = @{@"type":[NSNumber numberWithInteger:sender.tag],@"value":@10};
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
 }
 @end

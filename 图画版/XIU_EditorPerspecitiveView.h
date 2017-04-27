@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XIU_EditorPerspecitiveView : UIView
+@protocol XIU_EditorPerspecitiveDelgate <NSObject>
 
+@required
+- (void)perspecitiveValueChangeOfHorizontalWithValue:(CGFloat)value;
+- (void)perspecitiveValueChangeOfVerticalWithValue:(CGFloat)value;
+@end
+
+@interface XIU_EditorPerspecitiveView : UIView
+@property (nonatomic,assign)id<XIU_EditorPerspecitiveDelgate> delegate;
 @end
