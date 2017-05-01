@@ -18,6 +18,7 @@ typedef NS_ENUM (NSUInteger, EditorToolStyle) {
     EditorToolStyle_Info,
     EditorToolStyle_Perspecitive,
     EditorToolStyle_Flip,
+    EditorToolStyle_Crop//剪裁
 };
 
 @protocol XIU_EditorToolDelegate <NSObject>
@@ -33,6 +34,8 @@ typedef NS_ENUM (NSUInteger, EditorToolStyle) {
 
 @end
 @interface XIU_EditorToolView : UIView
+
+-(instancetype)initWithFrame:(CGRect)frame Controller:(UIViewController *)controller;
 
 @property (nonatomic, assign)id<XIU_EditorToolDelegate> delegate;
 

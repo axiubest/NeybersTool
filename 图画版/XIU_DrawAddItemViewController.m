@@ -38,12 +38,14 @@
     collection.dataSource = self;
     collection.delegate = self;
     collection.pagingEnabled = YES;
+    collection.userInteractionEnabled = YES;
     collection.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:collection];
     [collection registerNib:[UINib nibWithNibName:@"XIU_DrawCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     
     
 }
+
 
 
 
@@ -63,7 +65,8 @@
 }
 
 - (void)clcikImageViewDelegate {
-  
+    [_delegate drawAddItem];
+
 }
 
 @end

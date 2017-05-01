@@ -10,5 +10,7 @@
 
 @interface XIU_DrawView : UIView
 
+-(instancetype)initWithFrame:(CGRect)frame Controller:(UIViewController *)controller;
+- (void)createNewViewWithImage:(UIImage *)newImage;
 
 @end

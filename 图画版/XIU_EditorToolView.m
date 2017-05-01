@@ -12,7 +12,7 @@
 
 @property (nonatomic, weak)UIScrollView *scrollView;
 
-
+@property (nonatomic, weak) UIViewController *controller;
 @end
 
 @implementation XIU_EditorToolView
@@ -38,9 +38,10 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
 }
 
--(instancetype)initWithFrame:(CGRect)frame {
+-(instancetype)initWithFrame:(CGRect)frame  Controller:(UIViewController *)controller{
     self = [super initWithFrame:frame];
     if (self) {
+        _controller = controller;
         self.backgroundColor = [UIColor whiteColor];
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         scrollView.backgroundColor = [UIColor clearColor];
@@ -99,6 +100,9 @@
                        break;
             case EditorToolStyle_Flip:
                 
+                break;
+            case EditorToolStyle_Crop:
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:@{@"type":[NSNumber numberWithInteger:EditorToolStyle_Crop]}];
                 break;
             default:
                 break;

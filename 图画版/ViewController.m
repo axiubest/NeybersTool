@@ -14,7 +14,7 @@
 #define Width self.view.frame.size.width
 #define Height self.view.frame.size.height
 
-@interface ViewController ()<XIU_EditorToolDelegate>
+@interface ViewController ()<XIU_EditorToolDelegate,XIU_DrawAddItemVCDelegate>
 
 @property (nonatomic, weak)XIU_DrawView *drawView;
 @property (nonatomic, weak)XIU_EditorToolView *editorToolView;
@@ -40,6 +40,7 @@
     
     XIU_DrawAddItemViewController *itemVC = [[XIU_DrawAddItemViewController alloc] init];
     itemVC.view.frame = CGRectMake(100, 0, self.view.frame.size.width - 100, self.view.frame.size.height);
+    itemVC.delegate = self;
     [self.view insertSubview:itemVC.view belowSubview:self.view];
     [self addChildViewController:itemVC];
 
@@ -62,10 +63,10 @@
     [button addTarget:self action:@selector(didClickedButton:) forControlEvents:UIControlEventTouchUpInside];
     [_bgView addSubview:button];
     
-    XIU_EditorToolView *view = [[XIU_EditorToolView alloc] initWithFrame:CGRectMake(0, Height - 60, Width, 60)];
+    XIU_EditorToolView *view = [[XIU_EditorToolView alloc] initWithFrame:CGRectMake(0, Height - 60, Width, 60) Controller:self];
     view.delegate = self;
     _editorToolView = view;
-    XIU_DrawView *draw = [[XIU_DrawView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 400)];
+    XIU_DrawView *draw = [[XIU_DrawView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 400)Controller:self];
     draw.center = self.view.center;
     _drawView = draw;
 
@@ -93,6 +94,15 @@
    }
 
 
+- (void)drawAddItem {
+    [UIView animateWithDuration:0.5 animations:^{
+        _bgView.frame = CGRectMake(0, 0, Width, Height);
+    }];
+    [self.drawView createNewViewWithImage:[UIImage imageNamed:@"char"]];
+    
+
+}
+
 - (void)clcikItemBtn {
     [UIView animateWithDuration:0.5 animations:^{
         _bgView.frame = CGRectMake(0, 0, Width, Height);
@@ -100,13 +110,14 @@
 }
 
 
--(XIU_DrawView *)drawView {
-    if (!_drawView) {
-        XIU_DrawView *draw = [[XIU_DrawView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 60)];
-        _drawView = draw;
-    }
-    return _drawView;
-}
+//-(XIU_DrawView *)drawView {
+//    
+//    if (!_drawView) {
+//        XIU_DrawView *draw = [[XIU_DrawView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 60) Controller:self];
+//        _drawView = draw;
+//    }
+//    return _drawView;
+//}
 
 - (void)ClickAddBtn {
     _pushBtn.selected = NO;
@@ -124,12 +135,9 @@
     [self editorToolPerspecitiveViewHidden];
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    if (_editorToolView.perspecitive.frame.origin.y < self.view.frame.size.height ) {
-//        [self editorToolPerspecitiveViewHidden];
-//        }
 
-}
+
+
 
 - (void)editorToolPerspecitiveViewHidden {
     [UIView animateWithDuration:.5 animations:^{
