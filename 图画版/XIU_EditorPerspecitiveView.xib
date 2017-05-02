@@ -77,10 +77,16 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGY-lM-3c5">
                             <rect key="frame" x="0.0" y="0.0" width="256" height="80"/>
                             <state key="normal" image="对号.png"/>
+                            <connections>
+                                <action selector="clickSure:" destination="iN0-l3-epB" eventType="touchUpInside" id="EMu-kw-P1n"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIT-nb-LMV">
                             <rect key="frame" x="256" y="0.0" width="256" height="80"/>
                             <state key="normal" image="叉.png"/>
+                            <connections>
+                                <action selector="clickChanel:" destination="iN0-l3-epB" eventType="touchUpInside" id="auO-D8-nO8"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.25488874316215515" green="0.25478297472000122" blue="0.26297295093536377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -13,16 +13,13 @@
 {
     CGFloat _rotation;
     UIViewController *editorController;
-    UIImageView *tmpimg;
+    UIView *tmpimg;
 
 }
 @property (nonatomic, weak) UIImageView *archerBGView;
 
-@property (strong, nonatomic) UIImageView *imageView;
-@property (strong, nonatomic) UIImageView *imageView2;
 @property CGFloat lastRotation;
-@property CGRect frame1;
-@property CGRect frame2;
+
 
 @end
 static UIView *activeView = nil;
@@ -46,19 +43,22 @@ static UIView *activeView = nil;
     if (newImage == nil) {
         return;
     }
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(120, 120, 200, 200)];
+    tmpimg = view;
+    view.backgroundColor = [UIColor clearColor];
+    [self addSubview:view];
+    
     UIImageView *imgView = [[UIImageView alloc] initWithImage:newImage];
+    imgView.frame =CGRectMake(0, 0, 200, 200);
     imgView.userInteractionEnabled = YES;
-    [self addSubview:imgView];
-    _archerBGView = imgView;
-    imgView.frame = CGRectMake(120, 120, 200, 200);
-    imgView.center = self.center;
-    [self initGesturesWithView:imgView];
+    [view addSubview:imgView];
+    [self initGesturesWithView:view];
 
     
 }
 
 
-- (void)initGesturesWithView:(UIImageView *)imageView;
+- (void)initGesturesWithView:(UIView *)imageView;
 {
     imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidTap:)];
@@ -85,7 +85,7 @@ static UIView *activeView = nil;
 - (void)viewDidTap:(UITapGestureRecognizer*)sender
 {
     NSLog(@"%@---", sender.view);
-    tmpimg = (UIImageView *)sender.view;
+    tmpimg = (UIView *)sender.view;
 
     if (sender.state == UIGestureRecognizerStateEnded) {
 //        if(self.active){
@@ -104,7 +104,7 @@ static UIView *activeView = nil;
 - (void)viewDidPan:(UIPanGestureRecognizer*)recognizer
 {
     //平移
-    tmpimg = (UIImageView *)recognizer.view;
+    tmpimg = (UIView *)recognizer.view;
 //    [[self class] setActiveTextView:self];
     UIView *piece = recognizer.view;
     CGPoint translation = [recognizer translationInView:piece.superview];
@@ -137,7 +137,7 @@ static UIView *activeView = nil;
 - (void)viewDidPinch:(UIPinchGestureRecognizer *)recognizer {
     //缩放
 //    [[self class] setActiveTextView:self];
-    tmpimg = (UIImageView *)recognizer.view;
+    tmpimg = (UIView *)recognizer.view;
 
     if (recognizer.state == UIGestureRecognizerStateBegan ||
         recognizer.state == UIGestureRecognizerStateChanged) {
@@ -175,7 +175,7 @@ static UIView *activeView = nil;
 
 - (void)viewDidRotation:(UIRotationGestureRecognizer *)recognizer {
     //旋转
-    tmpimg = (UIImageView *)recognizer.view;
+    tmpimg = (UIView *)recognizer.view;
 
     if (recognizer.state == UIGestureRecognizerStateBegan ||
         recognizer.state == UIGestureRecognizerStateChanged) {
@@ -241,24 +241,32 @@ static UIView *activeView = nil;
 
 - (void)toolBarCommunication:(NSNotification *)noti {
     NSLog(@"%@", noti);
+    UIImageView *img = (UIImageView *)tmpimg.subviews.firstObject;
+    if (!img) {
+        return;
+    }
     if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:7]]) {
-        TOCropViewController * cropViewController = [[TOCropViewController alloc ] initWithImage: tmpimg.image];
+        TOCropViewController * cropViewController = [[TOCropViewController alloc ] initWithImage: img.image];
         cropViewController.delegate = self;
         [ editorController  presentViewController: cropViewController animated:YES  completion:nil ];
     }
     
-    if ([noti.userInfo[@"type"] isEqual:@4]) {
+    if ([noti.userInfo[@"type"] isEqual:@5]) {
         CATransform3D trans = CATransform3DIdentity;
         NSInteger num = [noti.userInfo[@"value"] integerValue];
         trans.m34 = -(num/100);
         trans = CATransform3DRotate(trans, M_PI/4, 0, 1, 0);
-        _imageView.layer.transform = trans;
-        _imageView2.layer.transform = trans;
+        
+        
+//        CATransform3D catrScale = CATransform3DMakeRotation(60 * M_PI/180, 1, 1, 0);
+        tmpimg.subviews.firstObject.layer.transform = trans;
 
     }
 }
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToCircularImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle {
     
+    UIImageView *img = (UIImageView *)tmpimg.subviews.firstObject;
+    img.image = image;
 }
 @end

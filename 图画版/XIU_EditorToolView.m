@@ -47,13 +47,13 @@
         scrollView.backgroundColor = [UIColor clearColor];
         _scrollView = scrollView;
         scrollView.delegate = self;
-        scrollView.contentSize = CGSizeMake(20 * 40, 60);
+        scrollView.contentSize = CGSizeMake(11 * 70 - 10, 60);
         
         [self addSubview:scrollView];
 
         for (int i = 0; i < 11; i++) {
-            UIButton *edit = [[UIButton alloc] initWithFrame:CGRectMake(i * 40, 0, 60, 60)];
-            edit.backgroundColor = [UIColor grayColor];
+            UIButton *edit = [[UIButton alloc] initWithFrame:CGRectMake(i * 70, 0, 60, 60)];
+            edit.backgroundColor = [UIColor orangeColor];
             [edit setTitle:@"1" forState:UIControlStateNormal];
             edit.tag = i;
             [edit addTarget:self action:@selector(clcikBotton:) forControlEvents:UIControlEventTouchUpInside];
@@ -112,4 +112,18 @@
 //    NSDictionary *dic = @{@"type":[NSNumber numberWithInteger:sender.tag],@"value":@10};
 //    [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
 }
+
+- (void)perspecitiveChancelDeleagete {
+    [self.perspecitive hiddenEditorPersperitiveWithAnimation:YES];
+
+}
+
+- (void)perspecitiveSureDeleagete {
+    [self.perspecitive hiddenEditorPersperitiveWithAnimation:YES];
+//    [UIView animateWithDuration:.5f animations:^{
+//      self.perspecitive.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, 180);
+//    }];
+}
+
+
 @end

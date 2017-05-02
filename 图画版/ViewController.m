@@ -110,14 +110,7 @@
 }
 
 
-//-(XIU_DrawView *)drawView {
-//    
-//    if (!_drawView) {
-//        XIU_DrawView *draw = [[XIU_DrawView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 60) Controller:self];
-//        _drawView = draw;
-//    }
-//    return _drawView;
-//}
+
 
 - (void)ClickAddBtn {
     _pushBtn.selected = NO;

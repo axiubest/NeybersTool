@@ -18,6 +18,27 @@
 
 @implementation XIU_EditorPerspecitiveView
 
+
+
+- (void)hiddenEditorPersperitiveWithAnimation:(BOOL)animation {
+    if (animation) {
+        [UIView animateWithDuration:.5f animations:^{
+            self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, 180);
+        }];
+
+    }else {
+            self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, 180);
+          }
+}
+
+- (IBAction)clickChanel:(id)sender {
+    [_delegate perspecitiveChancelDeleagete];
+}
+
+- (IBAction)clickSure:(id)sender {
+    [_delegate perspecitiveSureDeleagete];
+}
+
 - (IBAction)horizontalSliderValueChange:(UISlider *)sender {
     [_delegate perspecitiveValueChangeOfHorizontalWithValue:sender.value];
 }
