@@ -9,16 +9,19 @@
 #import <UIKit/UIKit.h>
 
 #import "XIU_EditorPerspecitiveView.h"
-
+#import "XIU_EditorFilterView.h"
 typedef NS_ENUM (NSUInteger, EditorToolStyle) {
-    EditorToolStyle_Clone,
     EditorToolStyle_Delete,
-    EditorToolStyle_Filter,
-    EditorToolStyle_Lock,
-    EditorToolStyle_Info,
-    EditorToolStyle_Perspecitive,
+    EditorToolStyle_Forward,
+    EditorToolStyle_Back,
     EditorToolStyle_Flip,
-    EditorToolStyle_Crop//剪裁
+    EditorToolStyle_Clone,
+    EditorToolStyle_Filter,
+    EditorToolStyle_Crop,//剪裁
+    EditorToolStyle_Perspecitive,
+    EditorToolStyle_Lock,
+    EditorToolStyle_Info
+  
 };
 
 @protocol XIU_EditorToolDelegate <NSObject>
@@ -42,6 +45,7 @@ typedef NS_ENUM (NSUInteger, EditorToolStyle) {
 @property (nonatomic, assign) EditorToolStyle style;
 
 @property (nonatomic, weak)XIU_EditorPerspecitiveView *perspecitive;
+@property (nonatomic, weak)XIU_EditorFilterView *filter;
 @end
 
 

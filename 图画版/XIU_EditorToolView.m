@@ -7,17 +7,24 @@
 //
 
 #import "XIU_EditorToolView.h"
-@interface XIU_EditorToolView ()<UIScrollViewDelegate,XIU_EditorPerspecitiveDelgate>
+@interface XIU_EditorToolView ()<UIScrollViewDelegate,XIU_EditorPerspecitiveDelgate,XIU_EditorFilterDelgate>
 
 
 @property (nonatomic, weak)UIScrollView *scrollView;
 
 @property (nonatomic, weak) UIViewController *controller;
+@property (nonatomic,strong) NSArray <NSString *>*toolBarArr;
 @end
-
+NSInteger toolBarItemSize = 60;
 @implementation XIU_EditorToolView
 @synthesize style = _style;
 
+-(NSArray<NSString *> *)toolBarArr {
+    if (!_toolBarArr) {
+        _toolBarArr = @[@"DELETE",@"FORWARD",@"BACK",@"FLIP",@"CLONE",@"FILTER",@"CROP",@"PERSPECTIVE",@"LOCK",@"INFO"];
+    }
+    return _toolBarArr;
+}
 
 -(XIU_EditorPerspecitiveView *)perspecitive {
     if (!_perspecitive) {
@@ -29,12 +36,36 @@
     return _perspecitive;
 }
 
+- (XIU_EditorFilterView *)filter {
+    if (!_filter) {
+        XIU_EditorFilterView *filter = [[[NSBundle mainBundle] loadNibNamed:@"XIU_EditorFilterView" owner:nil options:nil] firstObject];
+        filter.delegate = self;
+        filter.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, 180);
+        _filter = filter;
+  
+    }
+   return _filter;
+}
+
+
+#pragma mark perspecitive-Delegate
 - (void)perspecitiveValueChangeOfHorizontalWithValue:(CGFloat)value {
-    NSDictionary *dic = @{@"type":[NSNumber numberWithInteger:EditorToolStyle_Perspecitive],@"value":[NSNumber numberWithFloat:value]};
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
+    [self valueChangeWithType:EditorToolStyle_Perspecitive Value:value];
 }
 - (void)perspecitiveValueChangeOfVerticalWithValue:(CGFloat)value {
-    NSDictionary *dic = @{@"type":[NSNumber numberWithInteger:EditorToolStyle_Perspecitive],@"value":[NSNumber numberWithFloat:value]};
+    [self valueChangeWithType:EditorToolStyle_Perspecitive Value:value];
+}
+
+#pragma mark filter-Delegate
+- (void)filterValueChangeOfHorizontalWithValue:(CGFloat)value {
+        [self valueChangeWithType:EditorToolStyle_Filter Value:value];
+}
+- (void)filterValueChangeOfVerticalWithValue:(CGFloat)value {
+      [self valueChangeWithType:EditorToolStyle_Filter Value:value];
+}
+
+- (void)valueChangeWithType:(EditorToolStyle)type Value:(CGFloat)value {
+    NSDictionary *dic = @{@"type":[NSNumber numberWithInteger:type],@"value":[NSNumber numberWithFloat:value]};
     [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
 }
 
@@ -47,14 +78,15 @@
         scrollView.backgroundColor = [UIColor clearColor];
         _scrollView = scrollView;
         scrollView.delegate = self;
-        scrollView.contentSize = CGSizeMake(11 * 70 - 10, 60);
+        scrollView.contentSize = CGSizeMake(self.toolBarArr.count * (toolBarItemSize + 10) - 10, toolBarItemSize);
         
         [self addSubview:scrollView];
 
-        for (int i = 0; i < 11; i++) {
-            UIButton *edit = [[UIButton alloc] initWithFrame:CGRectMake(i * 70, 0, 60, 60)];
+        for (int i = 0; i < self.toolBarArr.count; i++) {
+            UIButton *edit = [[UIButton alloc] initWithFrame:CGRectMake(i * 70, 0, toolBarItemSize, toolBarItemSize)];
+            edit.titleLabel.font = [UIFont systemFontOfSize:10];
             edit.backgroundColor = [UIColor orangeColor];
-            [edit setTitle:@"1" forState:UIControlStateNormal];
+            [edit setTitle:self.toolBarArr[i] forState:UIControlStateNormal];
             edit.tag = i;
             [edit addTarget:self action:@selector(clcikBotton:) forControlEvents:UIControlEventTouchUpInside];
                 [scrollView addSubview:edit];
@@ -69,22 +101,26 @@
 }
 
 - (void)createToolBarView {
-       [self addSubview:self.perspecitive];
+    [self addSubview:self.perspecitive];
+    [self addSubview:self.filter];
 }
 
 - (void)clcikBotton:(UIButton *)sender {
     switch (sender.tag) {
         case EditorToolStyle_Clone:
-//            if ([self.delegate respondsToSelector:@selector(editorToolClone)]) {
-//                [self.delegate editorToolClone];
-//            }
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:@{@"type":[NSNumber numberWithInteger:EditorToolStyle_Clone]}];
             _style = EditorToolStyle_Clone;
-            break;
-        case EditorToolStyle_Delete:
-     
                 break;
-            case EditorToolStyle_Filter:
-                        break;
+        case EditorToolStyle_Delete:
+               [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:@{@"type":[NSNumber numberWithInteger:EditorToolStyle_Delete]}];
+                break;
+        case EditorToolStyle_Filter: {
+            [UIView animateWithDuration:.5f animations:^{
+                self.filter.frame = CGRectMake(0, self.frame.size.height - 170, self.frame.size.width, 170);
+            }];
+        }
+
+                break;
             case EditorToolStyle_Lock:
                 
                 break;
@@ -95,7 +131,6 @@
                     [UIView animateWithDuration:.5 animations:^{
                         self.perspecitive.frame = CGRectMake(0, self.frame.size.height - 170, self.frame.size.width, 170);
                     }];
-                    
                 }
                        break;
             case EditorToolStyle_Flip:
@@ -113,17 +148,7 @@
 //    [[NSNotificationCenter defaultCenter]postNotificationName:@"texttext" object:nil userInfo:dic];
 }
 
-- (void)perspecitiveChancelDeleagete {
-    [self.perspecitive hiddenEditorPersperitiveWithAnimation:YES];
 
-}
-
-- (void)perspecitiveSureDeleagete {
-    [self.perspecitive hiddenEditorPersperitiveWithAnimation:YES];
-//    [UIView animateWithDuration:.5f animations:^{
-//      self.perspecitive.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, 180);
-//    }];
-}
 
 
 @end

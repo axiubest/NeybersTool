@@ -17,8 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(100, 50, 175, 40);
-    [button setTitle:@"22" forState:UIControlStateNormal];
+    button.frame = CGRectMake(100, 200, 175, 40);
+    [button setTitle:@"go" forState:UIControlStateNormal];
     button.layer.borderWidth = 2.0;
     button.layer.cornerRadius = 5.0;
     button.layer.masksToBounds = YES;

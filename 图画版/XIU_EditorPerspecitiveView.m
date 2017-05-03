@@ -32,11 +32,12 @@
 }
 
 - (IBAction)clickChanel:(id)sender {
-    [_delegate perspecitiveChancelDeleagete];
+    [self hiddenEditorPersperitiveWithAnimation:YES];
 }
 
 - (IBAction)clickSure:(id)sender {
-    [_delegate perspecitiveSureDeleagete];
+    [self hiddenEditorPersperitiveWithAnimation:YES];
+
 }
 
 - (IBAction)horizontalSliderValueChange:(UISlider *)sender {

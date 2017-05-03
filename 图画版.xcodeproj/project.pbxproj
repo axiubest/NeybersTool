@@ -36,6 +36,9 @@
 		FA43B3BF1EA1EF4E0056784D /* unlike.png in Resources */ = {isa = PBXBuildFile; fileRef = FA43B3BD1EA1EF4E0056784D /* unlike.png */; };
 		FA43B3C61EA1F0080056784D /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = FA43B3C41EA1F0080056784D /* like.png */; };
 		FA43B3C71EA1F0080056784D /* unlike.png in Resources */ = {isa = PBXBuildFile; fileRef = FA43B3C51EA1F0080056784D /* unlike.png */; };
+		FA5DE75E1EB9B8D500EFEF60 /* XIU_EditorDrawItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5DE75D1EB9B8D500EFEF60 /* XIU_EditorDrawItemView.m */; };
+		FA5DE7611EB9BCC800EFEF60 /* XIU_EditorFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5DE7601EB9BCC800EFEF60 /* XIU_EditorFilterView.m */; };
+		FA5DE7631EB9BCD400EFEF60 /* XIU_EditorFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5DE7621EB9BCD400EFEF60 /* XIU_EditorFilterView.xib */; };
 		FA6691001EB0912600CBCC6D /* XIU_EditorPerspecitiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6690FF1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.m */; };
 		FA6691021EB0913100CBCC6D /* XIU_EditorPerspecitiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6691011EB0913100CBCC6D /* XIU_EditorPerspecitiveView.xib */; };
 		FA6691051EB092C300CBCC6D /* 叉.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6691031EB092C300CBCC6D /* 叉.png */; };
@@ -158,6 +161,11 @@
 		FA43B3BD1EA1EF4E0056784D /* unlike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlike.png; sourceTree = "<group>"; };
 		FA43B3C41EA1F0080056784D /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
 		FA43B3C51EA1F0080056784D /* unlike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlike.png; sourceTree = "<group>"; };
+		FA5DE75C1EB9B8D500EFEF60 /* XIU_EditorDrawItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XIU_EditorDrawItemView.h; sourceTree = "<group>"; };
+		FA5DE75D1EB9B8D500EFEF60 /* XIU_EditorDrawItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XIU_EditorDrawItemView.m; sourceTree = "<group>"; };
+		FA5DE75F1EB9BCC800EFEF60 /* XIU_EditorFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XIU_EditorFilterView.h; sourceTree = "<group>"; };
+		FA5DE7601EB9BCC800EFEF60 /* XIU_EditorFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XIU_EditorFilterView.m; sourceTree = "<group>"; };
+		FA5DE7621EB9BCD400EFEF60 /* XIU_EditorFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XIU_EditorFilterView.xib; sourceTree = "<group>"; };
 		FA6690FE1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XIU_EditorPerspecitiveView.h; sourceTree = "<group>"; };
 		FA6690FF1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XIU_EditorPerspecitiveView.m; sourceTree = "<group>"; };
 		FA6691011EB0913100CBCC6D /* XIU_EditorPerspecitiveView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XIU_EditorPerspecitiveView.xib; sourceTree = "<group>"; };
@@ -373,9 +381,14 @@
 				FA86379D1EA4EA4B001A10E9 /* XIU_DrawViewController.m */,
 				FAE1BCF61E99F58A007404A2 /* XIU_EditorToolView.h */,
 				FAE1BCF71E99F58A007404A2 /* XIU_EditorToolView.m */,
+				FA5DE75C1EB9B8D500EFEF60 /* XIU_EditorDrawItemView.h */,
+				FA5DE75D1EB9B8D500EFEF60 /* XIU_EditorDrawItemView.m */,
 				FA6690FE1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.h */,
 				FA6690FF1EB0912600CBCC6D /* XIU_EditorPerspecitiveView.m */,
 				FA6691011EB0913100CBCC6D /* XIU_EditorPerspecitiveView.xib */,
+				FA5DE75F1EB9BCC800EFEF60 /* XIU_EditorFilterView.h */,
+				FA5DE7601EB9BCC800EFEF60 /* XIU_EditorFilterView.m */,
+				FA5DE7621EB9BCD400EFEF60 /* XIU_EditorFilterView.xib */,
 				FA9665BF1E9E6036008C6D87 /* XIU_DrawView.h */,
 				FA9665C01E9E6036008C6D87 /* XIU_DrawView.m */,
 				FAE1BCCC1E99F35E007404A2 /* Main.storyboard */,
@@ -543,6 +556,7 @@
 				FA9665C71E9E63ED008C6D87 /* timg.jpeg in Resources */,
 				FA43B3C71EA1F0080056784D /* unlike.png in Resources */,
 				FAE1BCD31E99F35E007404A2 /* LaunchScreen.storyboard in Resources */,
+				FA5DE7631EB9BCD400EFEF60 /* XIU_EditorFilterView.xib in Resources */,
 				FA6691081EB093DB00CBCC6D /* 透视.png in Resources */,
 				FA6691061EB092C300CBCC6D /* 对号.png in Resources */,
 				FA16F5201EB771930020724E /* TOCropViewControllerLocalizable.strings in Resources */,
@@ -582,12 +596,14 @@
 			files = (
 				FA43B3B51EA1DBBB0056784D /* View+MASAdditions.m in Sources */,
 				FAE1BCF81E99F58A007404A2 /* XIU_EditorToolView.m in Sources */,
+				FA5DE7611EB9BCC800EFEF60 /* XIU_EditorFilterView.m in Sources */,
 				FA9665D81E9FBBD0008C6D87 /* XIU_DrawAddItemViewController.m in Sources */,
 				FA9665C11E9E6036008C6D87 /* XIU_DrawView.m in Sources */,
 				FA43B3B61EA1DBBB0056784D /* ViewController+MASAdditions.m in Sources */,
 				FA43B3B11EA1DBBA0056784D /* MASViewAttribute.m in Sources */,
 				FA43B3AD1EA1DBBA0056784D /* MASCompositeConstraint.m in Sources */,
 				FAE1BCCB1E99F35E007404A2 /* ViewController.m in Sources */,
+				FA5DE75E1EB9B8D500EFEF60 /* XIU_EditorDrawItemView.m in Sources */,
 				FA16F5261EB771930020724E /* TOCropOverlayView.m in Sources */,
 				FAE1BCC81E99F35E007404A2 /* AppDelegate.m in Sources */,
 				FA43B3AF1EA1DBBA0056784D /* MASConstraintMaker.m in Sources */,

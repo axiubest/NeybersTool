@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,7 +25,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.2509675920009613" green="0.25086116790771484" blue="0.25905182957649231" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="Bgp-gf-pts" firstAttribute="centerX" secondItem="1bw-v3-yAn" secondAttribute="centerX" id="X6F-9X-VVb"/>
                         <constraint firstItem="Bgp-gf-pts" firstAttribute="centerY" secondItem="1bw-v3-yAn" secondAttribute="centerY" id="xeL-oM-G8z"/>
@@ -39,7 +39,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="DMu-F9-d0p"/>
                             </constraints>
-                            <color key="minimumTrackTintColor" red="0.6487000584602356" green="0.79131156206130981" blue="0.84180253744125366" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="minimumTrackTintColor" red="0.6470588235294118" green="0.792156862745098" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="horizontalSliderValueChange:" destination="iN0-l3-epB" eventType="valueChanged" id="5Rp-hS-0bg"/>
                             </connections>
@@ -55,7 +55,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mxn-zL-DjT">
                     <rect key="frame" x="0.0" y="160" width="512" height="80"/>
                     <subviews>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" minimumValueImage="透视.png" maximumValueImage="透视.png" translatesAutoresizingMaskIntoConstraints="NO" id="t9c-bF-m68">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-50" maxValue="50" minimumValueImage="透视.png" maximumValueImage="透视.png" translatesAutoresizingMaskIntoConstraints="NO" id="t9c-bF-m68">
                             <rect key="frame" x="18" y="30" width="476" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="mvt-dc-QXj"/>

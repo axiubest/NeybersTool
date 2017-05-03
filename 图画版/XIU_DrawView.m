@@ -9,11 +9,20 @@
 #import "XIU_DrawView.h"
 #import "WBGImageEditorGestureManager.h"
 #import "TOCropViewController.h"
+#import "Masonry.h"
+#import "XIU_EditorDrawItemView.h"
+#define MAX_SCAL 400
+#define MIN_SCAL 20
+
+
 @interface XIU_DrawView ()<UIGestureRecognizerDelegate,TOCropViewControllerDelegate>
 {
     CGFloat _rotation;
     UIViewController *editorController;
     UIView *tmpimg;
+    CIFilter *_colorControlsFilter;
+    CIContext *_context;//Core Image上下文
+
 
 }
 @property (nonatomic, weak) UIImageView *archerBGView;
@@ -43,18 +52,12 @@ static UIView *activeView = nil;
     if (newImage == nil) {
         return;
     }
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(120, 120, 200, 200)];
+    XIU_EditorDrawItemView *view = [[XIU_EditorDrawItemView alloc] initWithFrame:CGRectMake(120, 120, 200, 200) Image:newImage];
     tmpimg = view;
-    view.backgroundColor = [UIColor clearColor];
     [self addSubview:view];
     
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:newImage];
-    imgView.frame =CGRectMake(0, 0, 200, 200);
-    imgView.userInteractionEnabled = YES;
-    [view addSubview:imgView];
     [self initGesturesWithView:view];
 
-    
 }
 
 
@@ -152,13 +155,13 @@ static UIView *activeView = nil;
         
         CGFloat currentScale = recognizer.scale;
         
-//        if (scale > MAX_TEXT_SCAL && currentScale > 1) {
-//            return;
-//        }
-//        
-//        if (scale < MIN_TEXT_SCAL && currentScale < 1) {
-//            return;
-//        }
+        if (scale > MAX_SCAL && currentScale > 1) {
+            return;
+        }
+        
+        if (scale < MIN_SCAL && currentScale < 1) {
+            return;
+        }
         
         
         recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, currentScale, currentScale);
@@ -240,27 +243,57 @@ static UIView *activeView = nil;
 
 
 - (void)toolBarCommunication:(NSNotification *)noti {
-    NSLog(@"%@", noti);
-    UIImageView *img = (UIImageView *)tmpimg.subviews.firstObject;
-    if (!img) {
+    
+    if (!tmpimg) {
         return;
     }
-    if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:7]]) {
-        TOCropViewController * cropViewController = [[TOCropViewController alloc ] initWithImage: img.image];
+//        if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:0]])  {//filter
+//        NSInteger num = [noti.userInfo[@"value"] integerValue];
+//        [_colorControlsFilter setValue:[NSNumber numberWithInteger:num] forKey:@"inputBrightness"];
+//            CIImage *outPutImage = [_colorControlsFilter outputImage];
+//            _context = [CIContext contextWithOptions:nil];
+//            CGImageRef temp = [_context createCGImage:outPutImage fromRect:[outPutImage extent]];
+//          UIImageView *tmp = (UIImageView *)tmpimg.subviews.lastObject;
+//            tmp.image =
+//            [_MyDelegate changeImage:[UIImage imageWithCGImage:temp]];
+//            CGImageRelease(temp);//release CGImage
+//
+//        }
+    if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:0]])  {//delete
+        
+        if ([self.subviews.lastObject isKindOfClass:[XIU_EditorDrawItemView class]]) {
+            [tmpimg removeFromSuperview];
+            if ([self.subviews.lastObject isKindOfClass:[XIU_EditorDrawItemView class]]) {
+                tmpimg = self.subviews.lastObject;
+            }else {
+                return;
+            }
+        }
+    }
+    if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:4]])  {//clone
+        UIImage *img = [(UIImageView *)tmpimg.subviews.firstObject image];
+
+        XIU_EditorDrawItemView *view = [[XIU_EditorDrawItemView alloc] initWithFrame:CGRectMake(tmpimg.frame.origin.x + 30, tmpimg.frame.origin.y, tmpimg.frame.size.width, tmpimg.frame.size.height) Image:img];
+        tmpimg = view;
+        [self addSubview:view];
+        [self initGesturesWithView:view];
+
+    }
+    if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:6]]) {//剪裁
+        TOCropViewController * cropViewController = [[TOCropViewController alloc] initWithImage:[(UIImageView *)tmpimg.subviews.firstObject image]];
         cropViewController.delegate = self;
         [ editorController  presentViewController: cropViewController animated:YES  completion:nil ];
     }
     
-    if ([noti.userInfo[@"type"] isEqual:@5]) {
+    if ([noti.userInfo[@"type"] isEqual:@7]) {
         CATransform3D trans = CATransform3DIdentity;
         NSInteger num = [noti.userInfo[@"value"] integerValue];
         trans.m34 = -(num/100);
         trans = CATransform3DRotate(trans, M_PI/4, 0, 1, 0);
         
-        
-//        CATransform3D catrScale = CATransform3DMakeRotation(60 * M_PI/180, 1, 1, 0);
-        tmpimg.subviews.firstObject.layer.transform = trans;
-
+        NSInteger y = num > 0 ? 1 : -1;
+        CATransform3D catrScale = CATransform3DMakeRotation(ABS(num)* M_PI/180, 1, y, 0);
+        tmpimg.subviews.firstObject.layer.transform = catrScale;
     }
 }
 
