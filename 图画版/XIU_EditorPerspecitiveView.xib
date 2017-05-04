@@ -55,7 +55,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mxn-zL-DjT">
                     <rect key="frame" x="0.0" y="160" width="512" height="80"/>
                     <subviews>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-50" maxValue="50" minimumValueImage="透视.png" maximumValueImage="透视.png" translatesAutoresizingMaskIntoConstraints="NO" id="t9c-bF-m68">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="20" minimumValueImage="透视.png" maximumValueImage="透视.png" translatesAutoresizingMaskIntoConstraints="NO" id="t9c-bF-m68">
                             <rect key="frame" x="18" y="30" width="476" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="mvt-dc-QXj"/>

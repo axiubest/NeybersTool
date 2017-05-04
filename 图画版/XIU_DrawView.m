@@ -11,6 +11,7 @@
 #import "TOCropViewController.h"
 #import "Masonry.h"
 #import "XIU_EditorDrawItemView.h"
+#import <CoreImage/CoreImage.h>
 #define MAX_SCAL 400
 #define MIN_SCAL 20
 
@@ -19,9 +20,8 @@
 {
     CGFloat _rotation;
     UIViewController *editorController;
-    UIView *tmpimg;
-    CIFilter *_colorControlsFilter;
-    CIContext *_context;//Core Image上下文
+    XIU_EditorDrawItemView *tmpimg;
+
 
 
 }
@@ -87,8 +87,7 @@ static UIView *activeView = nil;
 
 - (void)viewDidTap:(UITapGestureRecognizer*)sender
 {
-    NSLog(@"%@---", sender.view);
-    tmpimg = (UIView *)sender.view;
+    tmpimg = (XIU_EditorDrawItemView *)sender.view;
 
     if (sender.state == UIGestureRecognizerStateEnded) {
 //        if(self.active){
@@ -107,7 +106,7 @@ static UIView *activeView = nil;
 - (void)viewDidPan:(UIPanGestureRecognizer*)recognizer
 {
     //平移
-    tmpimg = (UIView *)recognizer.view;
+    tmpimg = (XIU_EditorDrawItemView *)recognizer.view;
 //    [[self class] setActiveTextView:self];
     UIView *piece = recognizer.view;
     CGPoint translation = [recognizer translationInView:piece.superview];
@@ -140,7 +139,7 @@ static UIView *activeView = nil;
 - (void)viewDidPinch:(UIPinchGestureRecognizer *)recognizer {
     //缩放
 //    [[self class] setActiveTextView:self];
-    tmpimg = (UIView *)recognizer.view;
+    tmpimg = (XIU_EditorDrawItemView *)recognizer.view;
 
     if (recognizer.state == UIGestureRecognizerStateBegan ||
         recognizer.state == UIGestureRecognizerStateChanged) {
@@ -178,7 +177,7 @@ static UIView *activeView = nil;
 
 - (void)viewDidRotation:(UIRotationGestureRecognizer *)recognizer {
     //旋转
-    tmpimg = (UIView *)recognizer.view;
+    tmpimg = (XIU_EditorDrawItemView *)recognizer.view;
 
     if (recognizer.state == UIGestureRecognizerStateBegan ||
         recognizer.state == UIGestureRecognizerStateChanged) {
@@ -199,28 +198,6 @@ static UIView *activeView = nil;
 }
 
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-//    CGRect boundss;
-//    if (!_archerBGView.superview) {
-//        [self.superview insertSubview:_archerBGView belowSubview:self];
-//        _archerBGView.frame = self.frame;
-//        boundss = self.bounds;
-//    }
-//    boundss = _archerBGView.bounds;
-//    self.transform = CGAffineTransformMakeRotation(_rotation);
-//    
-//    CGFloat w = boundss.size.width;
-//    CGFloat h = boundss.size.height;
-//    CGFloat scale = [(NSNumber *)[_archerBGView valueForKeyPath:@"layer.transform.scale.x"] floatValue];
-//    
-//    self.bounds = CGRectMake(0, 0, w*scale, h*scale);
-//    self.center = _archerBGView.center;
-//    
-//    _archerBGView.frame = CGRectMake(0 , 0, self.bounds.size.width - 2*15, self.bounds.size.height - 2*15);
- 
-}
 
 
 
@@ -247,15 +224,26 @@ static UIView *activeView = nil;
     if (!tmpimg) {
         return;
     }
-        if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:0]])  {//filter
+        if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:5]])  {//filter
         NSInteger num = [noti.userInfo[@"value"] integerValue];
-        [_colorControlsFilter setValue:[NSNumber numberWithInteger:num] forKey:@"inputBrightness"];
-            CIImage *outPutImage = [_colorControlsFilter outputImage];
-            _context = [CIContext contextWithOptions:nil];
-            CGImageRef temp = [_context createCGImage:outPutImage fromRect:[outPutImage extent]];
-          UIImageView *tmp = (UIImageView *)tmpimg.subviews.lastObject;
-            tmp.image = [UIImage imageWithCGImage:temp];
-            CGImageRelease(temp);//release CGImage
+            
+            
+            
+            CIContext *context = [CIContext contextWithOptions:nil];
+            CIImage *inputImage = [[CIImage alloc] initWithImage:[UIImage imageNamed:@"char"]];
+            // create gaussian blur filter
+            CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+            [filter setValue:inputImage forKey:kCIInputImageKey];
+            [filter setValue:[NSNumber numberWithInteger:10] forKey:@"inputRadius"];
+            // blur image
+            CIImage *result = [filter valueForKey:kCIOutputImageKey];
+            CGImageRef cgImage = [context createCGImage:result fromRect:[result extent]];
+            UIImage *image = [UIImage imageWithCGImage:cgImage];
+            CGImageRelease(cgImage);
+                        UIImageView *outImgView = (UIImageView *)tmpimg.subviews.firstObject;
+            outImgView.image = image;
+
+
 
         }
     if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:0]])  {//delete
@@ -270,7 +258,7 @@ static UIView *activeView = nil;
         }
     }
     if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:4]])  {//clone
-        UIImage *img = [(UIImageView *)tmpimg.subviews.firstObject image];
+        UIImage *img = tmpimg.imgView.image;
 
         XIU_EditorDrawItemView *view = [[XIU_EditorDrawItemView alloc] initWithFrame:CGRectMake(tmpimg.frame.origin.x + 30, tmpimg.frame.origin.y, tmpimg.frame.size.width, tmpimg.frame.size.height) Image:img];
         tmpimg = view;

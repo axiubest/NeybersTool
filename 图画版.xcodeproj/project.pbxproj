@@ -44,6 +44,8 @@
 		FA6691051EB092C300CBCC6D /* 叉.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6691031EB092C300CBCC6D /* 叉.png */; };
 		FA6691061EB092C300CBCC6D /* 对号.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6691041EB092C300CBCC6D /* 对号.png */; };
 		FA6691081EB093DB00CBCC6D /* 透视.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6691071EB093DB00CBCC6D /* 透视.png */; };
+		FA7FAA841EBAF5AA00FF18C5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7FAA831EBAF5AA00FF18C5 /* CoreImage.framework */; };
+		FA7FAA861EBB190F00FF18C5 /* 大小@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7FAA851EBB190F00FF18C5 /* 大小@2x.png */; };
 		FA86379E1EA4EA4B001A10E9 /* XIU_DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA86379D1EA4EA4B001A10E9 /* XIU_DrawViewController.m */; };
 		FA8637A61EA4F103001A10E9 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8637A11EA4F103001A10E9 /* RECommonFunctions.m */; };
 		FA8637A71EA4F104001A10E9 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8637A31EA4F103001A10E9 /* RESideMenu.m */; };
@@ -172,6 +174,8 @@
 		FA6691031EB092C300CBCC6D /* 叉.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "叉.png"; sourceTree = "<group>"; };
 		FA6691041EB092C300CBCC6D /* 对号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "对号.png"; sourceTree = "<group>"; };
 		FA6691071EB093DB00CBCC6D /* 透视.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "透视.png"; sourceTree = "<group>"; };
+		FA7FAA831EBAF5AA00FF18C5 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		FA7FAA851EBB190F00FF18C5 /* 大小@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "大小@2x.png"; sourceTree = "<group>"; };
 		FA86379C1EA4EA4A001A10E9 /* XIU_DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XIU_DrawViewController.h; sourceTree = "<group>"; };
 		FA86379D1EA4EA4B001A10E9 /* XIU_DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XIU_DrawViewController.m; sourceTree = "<group>"; };
 		FA8637A01EA4F103001A10E9 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7FAA841EBAF5AA00FF18C5 /* CoreImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +319,14 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		FA7FAA821EBAF5AA00FF18C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA7FAA831EBAF5AA00FF18C5 /* CoreImage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FA86379F1EA4F103001A10E9 /* RESideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +347,7 @@
 				FAE1BCDC1E99F35F007404A2 /* 图画版Tests */,
 				FAE1BCE71E99F35F007404A2 /* 图画版UITests */,
 				FAE1BCC11E99F35D007404A2 /* Products */,
+				FA7FAA821EBAF5AA00FF18C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -356,6 +370,7 @@
 				FA9665C81E9E65E3008C6D87 /* longchar.png */,
 				FA9665C91E9E65E3008C6D87 /* char.png */,
 				FA9665C61E9E63ED008C6D87 /* timg.jpeg */,
+				FA7FAA851EBB190F00FF18C5 /* 大小@2x.png */,
 				FA9665C21E9E61F4008C6D87 /* png-0838.png */,
 				FA6691071EB093DB00CBCC6D /* 透视.png */,
 				FA6691031EB092C300CBCC6D /* 叉.png */,
@@ -551,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9665C41E9E61F4008C6D87 /* png-0838.png in Resources */,
+				FA7FAA861EBB190F00FF18C5 /* 大小@2x.png in Resources */,
 				FA6691051EB092C300CBCC6D /* 叉.png in Resources */,
 				FA9665CB1E9E65E3008C6D87 /* char.png in Resources */,
 				FA9665C71E9E63ED008C6D87 /* timg.jpeg in Resources */,
