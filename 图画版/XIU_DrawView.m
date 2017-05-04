@@ -247,18 +247,17 @@ static UIView *activeView = nil;
     if (!tmpimg) {
         return;
     }
-//        if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:0]])  {//filter
-//        NSInteger num = [noti.userInfo[@"value"] integerValue];
-//        [_colorControlsFilter setValue:[NSNumber numberWithInteger:num] forKey:@"inputBrightness"];
-//            CIImage *outPutImage = [_colorControlsFilter outputImage];
-//            _context = [CIContext contextWithOptions:nil];
-//            CGImageRef temp = [_context createCGImage:outPutImage fromRect:[outPutImage extent]];
-//          UIImageView *tmp = (UIImageView *)tmpimg.subviews.lastObject;
-//            tmp.image =
-//            [_MyDelegate changeImage:[UIImage imageWithCGImage:temp]];
-//            CGImageRelease(temp);//release CGImage
-//
-//        }
+        if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:0]])  {//filter
+        NSInteger num = [noti.userInfo[@"value"] integerValue];
+        [_colorControlsFilter setValue:[NSNumber numberWithInteger:num] forKey:@"inputBrightness"];
+            CIImage *outPutImage = [_colorControlsFilter outputImage];
+            _context = [CIContext contextWithOptions:nil];
+            CGImageRef temp = [_context createCGImage:outPutImage fromRect:[outPutImage extent]];
+          UIImageView *tmp = (UIImageView *)tmpimg.subviews.lastObject;
+            tmp.image = [UIImage imageWithCGImage:temp];
+            CGImageRelease(temp);//release CGImage
+
+        }
     if ([noti.userInfo[@"type"] isEqual:[NSNumber numberWithInteger:0]])  {//delete
         
         if ([self.subviews.lastObject isKindOfClass:[XIU_EditorDrawItemView class]]) {

@@ -27,9 +27,6 @@ typedef NS_ENUM (NSUInteger, EditorToolStyle) {
 @protocol XIU_EditorToolDelegate <NSObject>
 
 @required
-- (void)editorToolClone;
-- (void)editorToolDelete;
-- (void)editorToolFilter;
 - (void)editorToolLock;
 - (void)editorToolInfo;
 - (void)editorToolPerspecitive;
